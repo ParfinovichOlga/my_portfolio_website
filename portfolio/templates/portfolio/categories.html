@@ -1,0 +1,19 @@
+{% extends "portfolio/base.html"%}
+{% load static %}
+{% block  content %}
+<div class="container px-4 py-5" id="custom-cards">
+    {% if category %}
+    <h2 class="pb-2 border-bottom">Category: {{category}}</h2>
+    {% elif tag %}
+    <h2 class="pb-2 border-bottom">#{{tag}}</h2>
+    {%else%}
+    <h2 class="pb-2 border-bottom">All My Projects</h2>
+    {% endif %}
+    <div class="row row-cols-4 row-cols-lg-3 align-items-stretch g-4 py-5">
+    {% for project in projects%}
+      {% include "portfolio/includes/project.html" %}
+
+    {% endfor%}
+  </div>
+</div>  
+{% endblock  %}

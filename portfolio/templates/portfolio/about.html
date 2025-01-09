@@ -1,0 +1,81 @@
+{% extends "portfolio/base.html"%}
+{% load static %}
+{% block  content %}
+
+<div class="container px-2">
+  <div class="row row-cols-4 row-cols-lg-2 align-items-stretch g-4 py-5"> 
+    <div class="col-lg-4 pl-3" >
+        <h2 class="pt-5"> The Tools I Use </h2>
+        <ul class="list-group">
+          {% for tool in tools %}
+          <li class="list-group">
+            <form action="{% url "get_by_tag" tool.caption %}" method="POST">
+             {% csrf_token%}
+              <button class="btn btn-light px-3 mb-1" type="submit" style="width:25rem; background-color:#c2c2a3">         
+              {{tool.caption}} </button>
+            </form> 
+            </li> 
+          {% endfor %}               
+        </ul>   
+    </div>  
+    <div class="col-lg-4 pl-3">
+      <h2 class="pt-5"> Frequency Of Using Tool </h2>
+      <div>
+        {{pie|safe}}
+      </div>
+      
+      <h2> My Resume </h2>
+      <div class="d-flex flex-column gap-4 py-md-2 align-items-center justify-content-center">        
+        <div class="list-group">
+          {% for cv in cvs%}
+          <label class="list-group-item d-flex gap-3">        
+            <span class="pt-1 form-checked-content">
+              <form action="{%url "about" %}" method="POST">
+                  {% csrf_token %}
+                  <input type="hidden" name="id" value="{{cv.id}}">
+                  <lable> Download {{cv.title}}
+                  <button type="submit" class="btn btn-dark"><img src="{% static "images/download.svg" %}"></button>
+                  </lable>
+              </form> 
+            </span>
+          </label>
+          {% endfor %}   
+        </div>   
+      </div>
+    </div> 
+    <div class="col-lg-4 pl-3">
+      <h2 class="pt-5"> Education </h2>
+      <div class="d-flex flex-column  gap-4 py-md-2 align-items-center justify-content-left">
+        <div class="list-group">
+          {% for university in universityes%}
+          <label class="list-group-item d-flex gap-3">        
+            <span class="pt-1 form-checked-content">
+              <strong>{{university.title}}</strong>
+              <small class="d-block text-body-secondary">            
+                {{university.start|date:"M Y"}} - {{university.finish|date:"M Y"}}
+              </small>
+              <small> {{university.specializaion}}
+            </span>
+          </label>      
+          {% endfor %}
+        </div>
+      </div>  
+      <h2>Courses</h2>
+      <div class="d-flex flex-column gap-4 py-md-2 align-items-center justify-content-center">
+          <div class="list-group">
+            {% for course in courses%}
+            <label class="list-group-item d-flex gap-3">        
+              <span class="pt-1 form-checked-content">
+                <strong>{{course.title}}</strong>
+                <small class="d-block text-body-secondary">            
+                  {{course.start|date:"M Y"}} - {{course.finish|date:"M Y"}}
+                </small>
+              </span>
+            </label>      
+            {% endfor %}
+          </div>
+        </div>
+    </div>  
+  </div>
+</div>  
+{% endblock %}

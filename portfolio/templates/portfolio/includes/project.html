@@ -1,0 +1,21 @@
+{% load static %}
+<div class="col">
+    <div class="card card h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('{{project.image.url}}');" >
+      <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+        <a href="{% url "project_detail" project.slug %}" style="text-decoration: none"><p class="pt-5 display-6 lh-2 fw-bold" style="background-color:  rgba(0, 0, 0, 0.5); color:white">{{project.title}}</p></a>
+        <ul class="d-flex list-unstyled mt-auto">
+          <li class="me-auto">
+            <a href="{{project.gh_link}}"><img src="{% static "images/github-30.png" %}" alt="GitHub" width="40" height="40" class="rounded-circle border border-white"></a>
+          </li>
+          <li class="d-flex align-items-center me-3">
+            <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"></use></svg>
+            <small></small>
+          </li>
+          <li class="d-flex align-items-center">
+            <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#calendar3"></use></svg>
+            <small></small>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>  

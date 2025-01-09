@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>    
+    <meta charset="UTF-8">
+    <title>{% block title %} My Portfolio Web Site {% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" type="text/css" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="px-3 py-2 pb-2 text-bg-dark border-bottom">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center">          
+          <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+            <li>
+              <a href="{% url "home" %}" class="nav-link text-secondary">
+                <img src="{% static "images/house-heart.svg" %}" class="bi d-block mx-auto mb-1" width="24" height="24">
+                Home
+              </a>
+            </li>
+            <li>
+              <a href="{% url "all_projects" %}" class="nav-link text-white">
+                <img src="{% static "images/border-all.svg"%}" class="bi d-block mx-auto mb-1" width="24" height="24">
+                Projects
+              </a>
+            </li>
+            <li>
+              <a href="{% url "interesting" %}" class="nav-link text-white">
+                <img src="{% static "images/heart.svg" %}" class="bi d-block mx-auto mb-1" width="24" height="24">
+                Interestig
+              </a>
+            </li>
+            <li>
+              <a href="{% url "about" %}" class="nav-link text-white">
+                <img src="{% static "images/download.svg"%}" class="bi d-block mx-auto mb-1" width="24" height="24">
+                About Me
+              </a>
+            </li>            
+          </ul>
+        </div>
+      </div>
+    </div>    
+  </header>
+</body>
+<body style="background-image: url('{% static "images/sincerely.jpg"%}')">
+{% block content %}
+{% endblock %}
+</body>
+
+<div class="container">
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <div class="col-md-4 d-flex align-items-center">
+      <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+        <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+      </a>
+      <span class="mb-3 mb-md-0 text-body-secondary">© 2024 Company, Inc</span>
+    </div>
+        
+    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+      <li class="ms-3"><a class="link-body-emphasis" href="https://www.linkedin.com/in/olga-parfinovich/"><img src="{% static "images/linkedin.svg"%}"/></a></li>
+      <li class="ms-3"><a class="link-body-emphasis" href="https://github.com/ParfinovichOlga?tab=repositories"> <img src="{% static "images/github.svg" %}"/></a></li>
+      <li class="ms-3"><a class="link-body-emphasis" href="@OlgaParfinovich"><img src="{%static "images/telegram.svg"%}"/></a></li>
+    </ul>
+  </footer>
+</div>
+
+
+
+
+
+    
+<script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+{% extends "portfolio/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content%}
+
+  <div class="container col-xxl-8 px-4 py-3">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">      
+      <div class="col-lg-7">
+        <h1 class="fw-light pb-2">Hi! I'm <strong>Olga Parfinovich </strong></h1>
+        <p class="lead" align="justify">And this is my <strong>Portfolio Website</strong>.</p>
+        <p class="lead" align="justify"> I'm Python Developer.</p>
+        <p class="lead" align="justify">I love programming. For me development is a sort of magic, I can create incredible stuffs by using different framework, libraries and tools.</p>
+        <p class="lead">I love to help others and I enjoy exploring new technologies in general!</p>
+        <p class="lead">
+          My goal is to keep on growing as a developer. If you want me to design some stuff for you feel free 
+          <a href="#contact"> contact me </a>
+        </p>
+      </div>
+      <div class="col-10 col-sm-8 col-lg-5">
+        <img src="{% static "images/olga.jpg"%}" class="rounded-circle" alt="Author photo" width=auto height="300" loading="lazy">
+      </div>
+    </div>
+  </div>
+
+  <!--Portfolio-->
+  <main>
+    <section class="py-2 text-center container">
+      <div class="row py-lg-3">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <h2 class="fw-light"><strong>My Projects</strong></h2>       
+        </div>
+      </div>
+    </section>
+ 
+    <div class="album py-2 bg-body-tertiary" style="background-image: url('{% static "images/stars.jpg" %}')">
+      <div class="container">
+  
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
+          {% for category in categories%}
+          <div class="col pb-5 pt-5 pl-5 pr-5">
+            <div class="card shadow-sm">
+              <img src="{{ category.image.url}}" class="bd-placeholder-img card-img-top" width="100%" height="225"  role="img" />
+              <div class="card-body">
+                <p class="card-text"><a href="{% url "category_projects" category.slug %}">{{category.name}}</a></p>
+              </div>
+            </div>
+          </div>     
+          {%endfor%}           
+        </div>
+      </div>
+    </div>  
+  </main>
+
+
+  <article id="contact" class="wrapper style4" style="background-color:rgb(29, 2, 31); color:#E5CCFF">
+    <div class="container pt-5 pb-5" style="width:700px;">
+      <header>
+        <h2 class="fw-light"><strong>Have me make stuff for you </strong></h2>        
+      </header>
+      {% if messages%}
+        {% for message in messages %}
+          <p style="color:green"> {{message}} </p>
+        {% endfor%}  
+      {% endif %}
+      <div class="row">
+        <div class="col-12">
+          <form method="post" action="/">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button class="btn btn-outline-light" type="submit" style="width:150px; color:#E5CCFF"> Send </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </article>      
+
+{% endblock %}

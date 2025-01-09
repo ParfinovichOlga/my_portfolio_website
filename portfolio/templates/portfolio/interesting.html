@@ -1,0 +1,33 @@
+{% extends "portfolio/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="d-flex flex-column flex-md-row p-4 gap-4 py-md-5 align-items-center justify-content-center">
+    <div class="list-group list-group-checkable d-grid gap-2 border-0">
+      {% if has_projects %} 
+      {%for project in projects%} 
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <a href="{% url "project_detail" project.slug %}" style="color:grey;">      
+            <label class="list-group-item rounded-3 py-3" style="width:400px; " for="listGroupCheckableRadios2">        
+              {{project.title}}    
+            </label>
+            </a> 
+          </div>  
+          <div class="col">
+            <form action="{% url "remove_from_interesting" project.id %}" method="POST">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-light rounded-pill px-3" style="width:90px;height:55px"> <img src="{% static "images/trash.svg" %}"><buttom>
+            </form> 
+          </div>
+        </div>  
+      </div>   
+      {% endfor %}
+      {% else%}
+      <p> There is no projects yet</p>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}
+
